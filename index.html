@@ -1,0 +1,132 @@
+<title>Sottoapps — small, careful apps</title>
+<style>
+  :root{
+    --ground:#181715;      /* warm neutral charcoal — bridges both children */
+    --ground-2:#111010;
+    --ink:#ECE8E0;         /* warm off-white */
+    --mute:#9C978C;
+    --mute-2:#6E6A61;
+    --line:#2B2926;
+    --ember:#E39B63;       /* Sotto's warmth */
+    --blue:#3B82F6;        /* ListWise's blue */
+    --serif:ui-serif,"New York",Charter,Georgia,"Times New Roman",serif;
+    --sans:ui-sans-serif,-apple-system,BlinkMacSystemFont,"SF Pro Text","Segoe UI",system-ui,sans-serif;
+    --mono:ui-monospace,"SF Mono","JetBrains Mono",Menlo,monospace;
+  }
+  *{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%}
+  .page{margin:0;min-height:100vh;display:flex;flex-direction:column;
+    background:
+      radial-gradient(80% 50% at 20% 0%, rgba(227,155,99,.08), transparent 50%),
+      radial-gradient(80% 50% at 85% 8%, rgba(67,179,110,.08), transparent 50%),
+      var(--ground);
+    color:var(--ink);font-family:var(--sans);-webkit-font-smoothing:antialiased;line-height:1.6}
+  .wrap{width:100%;max-width:1080px;margin-inline:auto;padding-inline:clamp(20px,5vw,56px)}
+  a{color:inherit;text-decoration:none}
+
+  header{padding-block:clamp(72px,16vh,150px) clamp(40px,7vh,72px);text-align:center}
+  .eyebrow{font-family:var(--mono);font-size:.76rem;letter-spacing:.28em;text-transform:uppercase;color:var(--mute-2);margin:0 0 1.4rem}
+  .studio{font-family:var(--serif);font-weight:450;font-size:clamp(3rem,11vw,6rem);letter-spacing:-.03em;line-height:.92;margin:0}
+  .studio .dot{color:var(--ember)}
+  .studio .dot2{color:var(--blue)}
+  .statement{font-family:var(--serif);font-size:clamp(1.2rem,2.4vw,1.6rem);color:var(--mute);
+    max-width:30ch;margin:1.6rem auto 0;text-wrap:balance;line-height:1.4}
+
+  .apps{display:grid;gap:20px;grid-template-columns:1fr;padding-bottom:clamp(48px,9vh,96px)}
+  @media(min-width:760px){.apps{grid-template-columns:1fr 1fr}}
+
+  .app{display:flex;flex-direction:column;border:1px solid var(--line);border-radius:22px;overflow:hidden;
+    background:var(--ground-2);transition:transform .2s ease,border-color .2s ease}
+  .app:hover{transform:translateY(-4px)}
+  .app:focus-visible{outline:2px solid var(--ink);outline-offset:3px}
+  .app--sotto:hover{border-color:var(--ember)}
+  .app--list:hover{border-color:var(--blue)}
+
+  .world{height:190px;position:relative;overflow:hidden;display:flex;align-items:flex-end;padding:20px}
+  /* Sotto world — nocturnal */
+  .world--sotto{background:radial-gradient(120% 90% at 70% 10%,#2b2740,transparent 60%),linear-gradient(180deg,#191722,#0c0b12)}
+  .world--sotto .eq{position:absolute;inset:auto 0 0 0;height:130px;display:flex;align-items:flex-end;gap:7px;justify-content:center;opacity:.5}
+  .world--sotto .eq i{width:9px;background:linear-gradient(var(--ember),transparent);border-radius:4px 4px 0 0;animation:sway 2.6s ease-in-out infinite}
+  @keyframes sway{0%,100%{height:16%}50%{height:82%}}
+  /* ListWise world — daylight */
+  .world--list{background:radial-gradient(120% 90% at 20% 0%,#ffffff,transparent 55%),linear-gradient(180deg,#eef3fc,#dfe6f2)}
+  .world--list .rows{position:absolute;inset:24px 22px auto 22px;display:grid;gap:9px}
+  .world--list .rows .r{display:flex;align-items:center;gap:10px}
+  .world--list .rows .c{width:18px;height:18px;border-radius:50%;border:2px solid #cfd3c6;flex:none}
+  .world--list .rows .c.on{background:var(--blue);border-color:var(--blue)}
+  .world--list .rows .l{height:8px;border-radius:5px;background:#cfd3c6}
+  .world--list .rows .r:nth-child(1) .l{width:56%}
+  .world--list .rows .r:nth-child(2) .l{width:44%;background:#dcdfd3}
+  .world--list .rows .r:nth-child(3) .l{width:64%;background:#dcdfd3}
+
+  .meta{padding:22px 22px 26px;display:flex;flex-direction:column;gap:8px;flex:1}
+  .cat{font-family:var(--mono);font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;color:var(--mute-2)}
+  .app h2{font-family:var(--serif);font-weight:500;font-size:2rem;letter-spacing:-.02em;margin:0;display:inline-flex;align-items:baseline;gap:.1em}
+  .app--sotto h2 .m{color:var(--ember)}
+  .app--list h2 .m{color:var(--blue);font-size:.62em;transform:translateY(-.05em)}
+  .app p{color:var(--mute);margin:0;max-width:34ch}
+  .go{margin-top:auto;font-family:var(--mono);font-size:.78rem;letter-spacing:.08em;text-transform:uppercase;color:var(--ink);
+    display:inline-flex;align-items:center;gap:8px;padding-top:12px}
+  .app--sotto .go{color:var(--ember)}
+  .app--list .go{color:var(--blue)}
+
+  footer{margin-top:auto;border-top:1px solid var(--line)}
+  .foot{padding-block:34px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;
+    font-family:var(--mono);font-size:.74rem;letter-spacing:.06em;color:var(--mute-2)}
+  .foot a:hover{color:var(--ink)}
+
+  @media(prefers-reduced-motion:reduce){.world--sotto .eq i{animation:none;height:44%}*{transition-duration:.001ms !important}}
+</style>
+
+<div class="page">
+  <header>
+    <div class="wrap">
+      <p class="eyebrow">Independent app studio</p>
+      <h1 class="studio">sottoapps<span class="dot">.</span></h1>
+      <p class="statement">Small, careful apps for the things you do every day — built quiet, kept private.</p>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <div class="apps">
+      <a class="app app--sotto" href="/sottoplayer" aria-label="Sotto — audio player">
+        <div class="world world--sotto">
+          <div class="eq" aria-hidden="true">
+            <i style="animation-delay:-1.9s"></i><i style="animation-delay:-.3s"></i><i style="animation-delay:-1.2s"></i>
+            <i style="animation-delay:-2.5s"></i><i style="animation-delay:-.8s"></i><i style="animation-delay:-1.6s"></i>
+            <i style="animation-delay:-.1s"></i><i style="animation-delay:-2.2s"></i><i style="animation-delay:-1.0s"></i>
+          </div>
+        </div>
+        <div class="meta">
+          <span class="cat">Audio player</span>
+          <h2>Sotto<span class="m">.</span></h2>
+          <p>Audiobooks, podcasts &amp; music — private by design. Hide what you’re playing, keep every file on-device.</p>
+          <span class="go">Visit Sotto →</span>
+        </div>
+      </a>
+
+      <a class="app app--list" href="/listwise" aria-label="ListWise — shopping lists">
+        <div class="world world--list">
+          <div class="rows" aria-hidden="true">
+            <div class="r"><span class="c on"></span><span class="l"></span></div>
+            <div class="r"><span class="c"></span><span class="l"></span></div>
+            <div class="r"><span class="c on"></span><span class="l"></span></div>
+          </div>
+        </div>
+        <div class="meta">
+          <span class="cat">Shopping lists</span>
+          <h2>ListWise<span class="m">✓</span></h2>
+          <p>Smarter lists, faster trips, less waste — voice, on-device scanning, and the right store for every item.</p>
+          <span class="go">Visit ListWise →</span>
+        </div>
+      </a>
+    </div>
+  </main>
+
+  <footer>
+    <div class="wrap foot">
+      <span>© Sottoapps</span>
+      <span><a href="mailto:hello@sottoapps.com">hello@sottoapps.com</a></span>
+    </div>
+  </footer>
+</div>
