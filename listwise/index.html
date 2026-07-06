@@ -1,0 +1,439 @@
+<title>ListWise — Smarter lists, faster trips</title>
+<style>
+  :root{
+    --bg:#F4F6FA;            /* cool iOS-grouped light */
+    --card:#FFFFFF;
+    --raise:#FBFCFE;
+    --ink:#0F172A;           /* slate-900 */
+    --ink-2:#334155;
+    --mute:#64748B;          /* slate-500 */
+    --mute-2:#94A3B8;
+    --line:#E5E9F1;
+    --line-2:#EEF1F6;
+    --blue:#2563EB;          /* app primary */
+    --blue-deep:#1D4ED8;
+    --blue-soft:#EAF0FE;
+    --green:#10B981;         /* app success */
+    --green-soft:#E6F8F1;
+    --amber:#F59E0B;
+    /* store-type colors, from the app */
+    --st-market:#12A187;--st-butcher:#D23D4E;--st-super:#2F6EE0;
+    --st-ware:#9A33CC;--st-disc:#F59E0B;--st-grocery:#2563EB;
+    --shadow:0 20px 44px -24px rgba(15,23,42,.34);
+    --shadow-sm:0 6px 18px -10px rgba(15,23,42,.28);
+    --sans:-apple-system,BlinkMacSystemFont,"SF Pro Display","SF Pro Text","Segoe UI",system-ui,sans-serif;
+    --mono:ui-monospace,"SF Mono","JetBrains Mono",Menlo,monospace;
+    --s--1:.82rem;--s-0:1.0625rem;--s-1:1.3rem;--s-2:1.6rem;--s-3:2.2rem;--s-4:clamp(2.5rem,5vw,3.7rem);
+  }
+  *{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%}
+  .page{margin:0}
+  .page{
+    background:
+      radial-gradient(115% 70% at 88% -8%, rgba(37,99,235,.09), transparent 46%),
+      radial-gradient(80% 55% at 2% 2%, rgba(16,185,129,.08), transparent 42%),
+      var(--bg);
+    color:var(--ink);font-family:var(--sans);font-size:var(--s-0);line-height:1.6;
+    -webkit-font-smoothing:antialiased;overflow-x:hidden;min-height:100vh;
+  }
+  .wrap{width:100%;max-width:1120px;margin-inline:auto;padding-inline:clamp(20px,5vw,56px)}
+  h1,h2,h3{font-weight:700;letter-spacing:-.025em;text-wrap:balance;line-height:1.06;margin:0}
+  p{margin:0}a{color:inherit}
+  .eyebrow{font-family:var(--mono);font-size:var(--s--1);letter-spacing:.2em;text-transform:uppercase;color:var(--mute-2);margin:0 0 1.1rem}
+  .kicker{font-family:var(--mono);font-size:var(--s--1);letter-spacing:.16em;text-transform:uppercase;color:var(--blue);margin-bottom:.9rem}
+  .em{color:var(--blue)}
+
+  .topnav{max-width:1120px;margin:0 auto;padding:22px clamp(20px,5vw,56px);display:flex;gap:12px;align-items:center;
+    font-family:var(--mono);font-size:.72rem;letter-spacing:.13em;text-transform:uppercase;color:var(--mute-2)}
+  .topnav a{color:var(--blue);text-decoration:none}
+  .topnav span{opacity:.5}
+
+  /* ---------- HERO ---------- */
+  .hero{padding-block:clamp(28px,4vh,54px) clamp(50px,9vh,100px)}
+  .hero__grid{display:grid;gap:clamp(38px,6vw,66px);align-items:center;grid-template-columns:1fr}
+  @media(min-width:920px){.hero__grid{grid-template-columns:1.04fr .96fr}}
+  .wordmark{font-size:clamp(3.4rem,9vw,5.4rem);font-weight:800;letter-spacing:-.038em;line-height:.95;margin:0 0 .1em}
+  .wordmark .w{color:var(--blue)}
+  .lede{font-size:var(--s-1);max-width:30ch;margin:.4rem 0 0;font-weight:500;color:var(--ink-2)}
+  .lede .soft{color:var(--mute)}
+  .sub{color:var(--mute);margin-top:1rem;max-width:42ch}
+  .cta-row{display:flex;flex-wrap:wrap;align-items:center;gap:14px 20px;margin-top:2rem}
+  .store-btn{display:inline-flex;align-items:center;gap:12px;background:var(--ink);color:#fff;
+    padding:13px 22px 13px 18px;border-radius:14px;text-decoration:none;font-weight:600;
+    box-shadow:var(--shadow-sm);transition:transform .18s ease}
+  .store-btn:hover{transform:translateY(-2px)}
+  .store-btn small{display:block;font-size:.62rem;font-weight:500;letter-spacing:.14em;text-transform:uppercase;opacity:.62;line-height:1}
+  .store-btn b{font-size:1.05rem;font-weight:700;letter-spacing:-.01em}
+  .store-btn svg{width:26px;height:26px;flex:none}
+  .note{font-family:var(--mono);font-size:.74rem;color:var(--mute-2);letter-spacing:.03em}
+
+  /* ---------- PLANNER DEMO ---------- */
+  .demo{display:flex;flex-direction:column;align-items:center;gap:15px}
+  .planner{width:min(370px,93vw);background:var(--card);border:1px solid var(--line);border-radius:24px;box-shadow:var(--shadow);overflow:hidden}
+  .pl-head{padding:18px 20px 4px;display:flex;align-items:center;gap:10px}
+  .pl-head h3{font-size:1.2rem;flex:1}
+  .pill{font-family:var(--mono);font-size:.68rem;letter-spacing:.06em;color:var(--mute);background:var(--bg);border:1px solid var(--line);border-radius:999px;padding:4px 10px}
+  .seg{display:flex;margin:12px 16px 6px;background:var(--bg);border:1px solid var(--line);border-radius:12px;padding:3px;gap:3px}
+  .seg button{flex:1;font:inherit;font-size:.85rem;font-weight:600;color:var(--mute);background:transparent;border:0;cursor:pointer;padding:8px 6px;border-radius:9px;transition:background .2s,color .2s}
+  .seg button.on{background:var(--card);color:var(--blue);box-shadow:var(--shadow-sm)}
+  .seg button:focus-visible{outline:2px solid var(--blue);outline-offset:2px}
+
+  .views{padding:2px 8px 6px}
+  .view[hidden]{display:none}
+  .tripbar{display:flex;align-items:center;gap:10px;margin:8px 8px 2px;padding:10px 12px;border-radius:12px;background:var(--blue-soft);color:var(--blue-deep);font-weight:600;font-size:.9rem}
+  .tripbar.save{background:var(--green-soft);color:#0B7A5B}
+  .tripbar .n{font-family:var(--mono);font-variant-numeric:tabular-nums}
+  .tripbar .dotsep{opacity:.5}
+  .store{display:flex;align-items:center;gap:9px;padding:16px 10px 6px}
+  .store .dot{width:9px;height:9px;border-radius:3px;background:var(--c,#888);flex:none}
+  .store .snm{font-weight:700;font-size:.86rem}
+  .store .cnt{font-family:var(--mono);font-size:.7rem;color:var(--mute-2);margin-left:auto}
+  .item{display:flex;align-items:center;gap:12px;padding:9px 10px;border-radius:11px;cursor:pointer;transition:background .15s}
+  .item:hover{background:var(--bg)}
+  .item .box{width:21px;height:21px;border-radius:50%;border:2px solid var(--line);flex:none;display:flex;align-items:center;justify-content:center;transition:background .2s,border-color .2s}
+  .item .box svg{width:11px;height:11px;color:#fff;opacity:0;transition:opacity .15s}
+  .item .nm{flex:1;min-width:0;font-size:.96rem}
+  .item .deal{font-family:var(--mono);font-size:.62rem;letter-spacing:.06em;text-transform:uppercase;color:var(--green);background:var(--green-soft);border-radius:999px;padding:3px 8px}
+  .item.done .box{background:var(--green);border-color:var(--green)}
+  .item.done .box svg{opacity:1}
+  .item.done .nm{color:var(--mute-2);text-decoration:line-through;text-decoration-color:var(--line)}
+  .demo figcaption{font-family:var(--mono);font-size:.72rem;letter-spacing:.02em;color:var(--mute-2);text-align:center;max-width:34ch}
+
+  /* ---------- THESIS ---------- */
+  .thesis{padding-block:clamp(56px,10vh,110px);border-top:1px solid var(--line)}
+  .thesis h2{font-size:var(--s-4);max-width:20ch;letter-spacing:-.03em}
+  .thesis h2 .q{color:var(--mute-2)}
+
+  /* ---------- BANDS ---------- */
+  .band{padding-block:clamp(44px,8vh,82px);border-top:1px solid var(--line)}
+  .band__grid{display:grid;gap:clamp(26px,5vw,58px);grid-template-columns:1fr}
+  @media(min-width:820px){.band__grid{grid-template-columns:.92fr 1.08fr;align-items:center}}
+  .band__grid.flip{direction:rtl}.band__grid.flip>*{direction:ltr}
+  .band h2{font-size:var(--s-3);margin-bottom:1rem;letter-spacing:-.03em}
+  .band p{color:var(--mute);max-width:44ch}
+
+  .list{list-style:none;padding:0;margin:0;display:grid;gap:2px}
+  .list li{display:flex;gap:14px;padding:15px 4px;border-bottom:1px solid var(--line-2);align-items:flex-start}
+  .list li:last-child{border-bottom:0}
+  .list .ic{flex:none;width:36px;height:36px;border-radius:11px;background:var(--blue-soft);display:flex;align-items:center;justify-content:center;margin-top:1px}
+  .list .ic svg{width:18px;height:18px;color:var(--blue)}
+  .list .ic.g{background:var(--green-soft)}.list .ic.g svg{color:var(--green)}
+  .list b{display:block;color:var(--ink);font-weight:650;font-size:1rem}
+  .list span{color:var(--mute);font-size:.94rem}
+
+  .panel{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:18px;box-shadow:var(--shadow-sm)}
+  /* capture chips */
+  .capture{display:grid;gap:12px}
+  .cap-row{display:flex;align-items:center;gap:13px;padding:13px;border:1px solid var(--line);border-radius:14px;background:var(--raise)}
+  .cap-row .ci{width:40px;height:40px;border-radius:11px;flex:none;display:flex;align-items:center;justify-content:center;background:var(--blue-soft)}
+  .cap-row .ci svg{width:20px;height:20px;color:var(--blue)}
+  .cap-row .t b{display:block;font-weight:650;font-size:.98rem}
+  .cap-row .t span{color:var(--mute);font-size:.86rem}
+  .cap-row .live{margin-left:auto;font-family:var(--mono);font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;color:var(--green);display:inline-flex;align-items:center;gap:6px}
+  .cap-row .live i{width:7px;height:7px;border-radius:50%;background:var(--green)}
+  /* household */
+  .house{display:grid;gap:10px}
+  .house .who{display:flex;align-items:center;gap:10px}
+  .house .av{width:30px;height:30px;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-size:.72rem;font-weight:700}
+  .house .a1{background:#2563EB}.house .a2{background:#12A187}.house .a3{background:#F59E0B}
+  .house .r{display:flex;align-items:center;gap:11px;padding:9px 2px}
+  .house .r+.r{border-top:1px solid var(--line-2)}
+  .house .b{width:19px;height:19px;border-radius:50%;border:2px solid var(--line);flex:none;display:flex;align-items:center;justify-content:center}
+  .house .b.on{background:var(--green);border-color:var(--green)}
+  .house .b svg{width:10px;height:10px;color:#fff}
+  .house .nm{flex:1;font-size:.94rem}
+  .house .b.on+.nm{color:var(--mute-2);text-decoration:line-through;text-decoration-color:var(--line)}
+  .house .tag{font-family:var(--mono);font-size:.64rem;color:var(--mute-2);letter-spacing:.03em;background:var(--bg);border:1px solid var(--line);border-radius:999px;padding:3px 9px}
+  /* budget */
+  .budget .brow{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:4px}
+  .budget .amt{font-family:var(--mono);font-weight:700;font-size:1.5rem;font-variant-numeric:tabular-nums}
+  .budget .cap{font-family:var(--mono);font-size:.8rem;color:var(--mute)}
+  .budget .bar{height:9px;border-radius:6px;background:var(--line-2);overflow:hidden;margin:8px 0 14px}
+  .budget .bar i{display:block;height:100%;width:63%;border-radius:6px;background:linear-gradient(90deg,var(--blue),var(--green))}
+  .budget .grid2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+  .budget .st{border:1px solid var(--line);border-radius:12px;padding:11px 13px}
+  .budget .st .k{font-size:.78rem;color:var(--mute)}
+  .budget .st .v{font-family:var(--mono);font-weight:700;font-variant-numeric:tabular-nums;font-size:1.05rem}
+  .budget .st .v.down{color:var(--green)}
+
+  /* ---------- POWER GRID ---------- */
+  .grid{display:grid;gap:14px;grid-template-columns:repeat(2,1fr);margin-top:8px}
+  @media(min-width:760px){.grid{grid-template-columns:repeat(3,1fr)}}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:20px;transition:border-color .2s,transform .2s}
+  .card:hover{border-color:var(--blue);transform:translateY(-3px)}
+  .card .ic{width:36px;height:36px;border-radius:10px;background:var(--blue-soft);display:flex;align-items:center;justify-content:center;margin-bottom:14px}
+  .card .ic svg{width:19px;height:19px;color:var(--blue)}
+  .card b{display:block;font-weight:650;margin-bottom:4px}
+  .card span{color:var(--mute);font-size:.9rem}
+
+  /* ---------- PRICING NOTE ---------- */
+  .pricing{border-top:1px solid var(--line);padding-block:clamp(44px,8vh,80px)}
+  .pricing .box{background:linear-gradient(135deg,var(--blue),#3b74f0);color:#fff;border-radius:22px;padding:clamp(26px,4vw,40px);
+    display:grid;gap:16px;box-shadow:var(--shadow)}
+  .pricing h2{color:#fff;font-size:var(--s-2)}
+  .pricing p{color:rgba(255,255,255,.86);max-width:52ch}
+  .pricing .plans{display:flex;flex-wrap:wrap;gap:12px;margin-top:4px}
+  .pricing .plan{background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.24);border-radius:14px;padding:12px 18px}
+  .pricing .plan b{display:block;font-size:1rem}
+  .pricing .plan span{font-size:.82rem;color:rgba(255,255,255,.8)}
+
+  /* ---------- FOOTER ---------- */
+  .foot{padding-block:clamp(56px,10vh,110px);border-top:1px solid var(--line);text-align:center}
+  .foot .wordmark{font-size:clamp(2.6rem,8vw,4.2rem)}
+  .foot .tag{color:var(--mute);font-size:var(--s-1);margin-top:.4rem;font-weight:500}
+  .foot .links{display:flex;gap:8px 26px;flex-wrap:wrap;justify-content:center;margin-top:2.2rem;
+    font-family:var(--mono);font-size:.76rem;letter-spacing:.06em;text-transform:uppercase;color:var(--mute-2)}
+  .foot .links a{text-decoration:none;color:var(--mute-2);transition:color .2s}
+  .foot .links a:hover{color:var(--blue)}
+  .foot .fine{margin-top:1.8rem;color:var(--mute-2);font-size:.78rem}
+
+  a:focus-visible,button:focus-visible{outline:2px solid var(--blue);outline-offset:3px;border-radius:6px}
+  @media(prefers-reduced-motion:reduce){*{transition-duration:.001ms !important}}
+</style>
+
+<div class="page">
+  <nav class="topnav" aria-label="Sottoapps">
+    <a href="/">Sottoapps</a><span aria-hidden="true">/</span><span>ListWise</span>
+  </nav>
+
+  <!-- ===================== HERO ===================== -->
+  <section class="hero">
+    <div class="wrap">
+      <p class="eyebrow">For iPhone &amp; iPad</p>
+      <div class="hero__grid">
+        <div>
+          <h1 class="wordmark">List<span class="w">Wise</span></h1>
+          <p class="lede">Smarter lists, faster trips, <span class="soft">less waste.</span></p>
+          <p class="sub">One list, routed to the right stores — and optimized for whatever matters this trip: the fewest stops, the lowest total, or the best quality.</p>
+          <div class="cta-row">
+            <a class="store-btn" href="#" aria-label="Download on the App Store">
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16.5 12.6c0-2 1.6-3 1.7-3.05-.9-1.35-2.35-1.5-2.85-1.5-1.2-.12-2.35.7-2.97.7-.6 0-1.55-.68-2.55-.66-1.3.02-2.5.76-3.17 1.93-1.35 2.35-.35 5.83.97 7.74.64.93 1.4 1.98 2.4 1.94.96-.04 1.33-.62 2.5-.62 1.15 0 1.5.62 2.52.6 1.04-.02 1.7-.95 2.34-1.9.73-1.08 1.03-2.13 1.05-2.18-.02-.01-2-.78-2.01-3.06zM14.6 6.7c.53-.64.88-1.53.78-2.42-.76.03-1.68.5-2.22 1.14-.48.56-.9 1.47-.79 2.33.85.07 1.71-.42 2.23-1.05z"/></svg>
+              <span><small>Download on the</small><b>App&nbsp;Store</b></span>
+            </a>
+            <span class="note">Free to start · Premium unlocks the rest</span>
+          </div>
+        </div>
+
+        <!-- interactive trip planner -->
+        <figure class="demo">
+          <div class="planner" data-mode="time" id="planner">
+            <div class="pl-head"><h3>This week</h3><span class="pill">8 items</span></div>
+            <div class="seg" role="group" aria-label="Optimize this trip for">
+              <button type="button" class="on" data-set="time" aria-pressed="true">Time</button>
+              <button type="button" data-set="cost" aria-pressed="false">Cost</button>
+              <button type="button" data-set="premium" aria-pressed="false">Premium</button>
+            </div>
+            <div class="views">
+              <!-- TIME -->
+              <div class="view v-time">
+                <div class="tripbar"><span>Fewest stops</span><span class="dotsep">·</span><span class="n">1 stop</span><span class="dotsep">·</span><span class="n">~30 min</span></div>
+                <div class="store"><span class="dot" style="--c:var(--st-super)"></span><span class="snm">Supercenter</span><span class="cnt">8 items</span></div>
+                <div class="item"><span class="box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12.5l5 5L20 6"/></svg></span><span class="nm">Ribeye steak</span></div>
+                <div class="item"><span class="box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12.5l5 5L20 6"/></svg></span><span class="nm">Baby spinach</span></div>
+                <div class="item"><span class="box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12.5l5 5L20 6"/></svg></span><span class="nm">Sourdough</span></div>
+                <div class="item"><span class="box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12.5l5 5L20 6"/></svg></span><span class="nm">Whole milk</span></div>
+                <div class="item"><span class="box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12.5l5 5L20 6"/></svg></span><span class="nm">Paper towels</span></div>
+                <div class="item"><span class="box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12.5l5 5L20 6"/></svg></span><span class="nm">Sparkling water</span></div>
+                <div class="item"><span class="box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12.5l5 5L20 6"/></svg></span><span class="nm">Rice, 5 kg</span></div>
+                <div class="item"><span class="box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12.5l5 5L20 6"/></svg></span><span class="nm">Frozen berries</span></div>
+              </div>
+              <!-- COST -->
+              <div class="view v-cost" hidden>
+                <div class="tripbar save"><span>Lowest total</span><span class="dotsep">·</span><span class="n">4 stops</span><span class="dotsep">·</span><span>save ~<span class="n">$16</span></span></div>
+                <div class="store"><span class="dot" style="--c:var(--st-ware)"></span><span class="snm">Warehouse Club</span><span class="cnt">2 items</span></div>
+                <div class="item"><span class="box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12.5l5 5L20 6"/></svg></span><span class="nm">Rice, 5 kg</span><span class="deal">deal</span></div>
+                <div class="item"><span class="box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12.5l5 5L20 6"/></svg></span><span class="nm">Paper towels</span></div>
+                <div class="store"><span class="dot" style="--c:var(--st-disc)"></span><span class="snm">Discount Grocer</span><span class="cnt">3 items</span></div>
+                <div class="item"><span class="box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12.5l5 5L20 6"/></svg></span><span class="nm">Whole milk</span></div>
+                <div class="item"><span class="box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12.5l5 5L20 6"/></svg></span><span class="nm">Sparkling water</span><span class="deal">deal</span></div>
+                <div class="item"><span class="box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12.5l5 5L20 6"/></svg></span><span class="nm">Frozen berries</span></div>
+                <div class="store"><span class="dot" style="--c:var(--st-market)"></span><span class="snm">Market</span><span class="cnt">2 items</span></div>
+                <div class="item"><span class="box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12.5l5 5L20 6"/></svg></span><span class="nm">Baby spinach</span></div>
+                <div class="item"><span class="box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12.5l5 5L20 6"/></svg></span><span class="nm">Sourdough</span></div>
+                <div class="store"><span class="dot" style="--c:var(--st-super)"></span><span class="snm">Supercenter</span><span class="cnt">1 item</span></div>
+                <div class="item"><span class="box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12.5l5 5L20 6"/></svg></span><span class="nm">Ribeye steak</span></div>
+              </div>
+              <!-- PREMIUM -->
+              <div class="view v-premium" hidden>
+                <div class="tripbar"><span>Best quality</span><span class="dotsep">·</span><span class="n">6 stops</span><span class="dotsep">·</span><span>specialists</span></div>
+                <div class="store"><span class="dot" style="--c:var(--st-butcher)"></span><span class="snm">Butcher</span><span class="cnt">1 item</span></div>
+                <div class="item"><span class="box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12.5l5 5L20 6"/></svg></span><span class="nm">Ribeye steak</span></div>
+                <div class="store"><span class="dot" style="--c:var(--st-market)"></span><span class="snm">Market</span><span class="cnt">2 items</span></div>
+                <div class="item"><span class="box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12.5l5 5L20 6"/></svg></span><span class="nm">Baby spinach</span></div>
+                <div class="item"><span class="box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12.5l5 5L20 6"/></svg></span><span class="nm">Sourdough</span></div>
+                <div class="store"><span class="dot" style="--c:var(--st-grocery)"></span><span class="snm">Grocery Store</span><span class="cnt">1 item</span></div>
+                <div class="item"><span class="box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12.5l5 5L20 6"/></svg></span><span class="nm">Whole milk</span></div>
+                <div class="store"><span class="dot" style="--c:var(--st-super)"></span><span class="snm">Supercenter</span><span class="cnt">2 items</span></div>
+                <div class="item"><span class="box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12.5l5 5L20 6"/></svg></span><span class="nm">Paper towels</span></div>
+                <div class="item"><span class="box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12.5l5 5L20 6"/></svg></span><span class="nm">Frozen berries</span></div>
+                <div class="store"><span class="dot" style="--c:var(--st-ware)"></span><span class="snm">Warehouse Club</span><span class="cnt">1 item</span></div>
+                <div class="item"><span class="box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12.5l5 5L20 6"/></svg></span><span class="nm">Rice, 5 kg</span></div>
+                <div class="store"><span class="dot" style="--c:var(--st-disc)"></span><span class="snm">Discount Grocer</span><span class="cnt">1 item</span></div>
+                <div class="item"><span class="box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12.5l5 5L20 6"/></svg></span><span class="nm">Sparkling water</span></div>
+              </div>
+            </div>
+          </div>
+          <figcaption>Same list, three plans. Tap <b>Time</b>, <b>Cost</b> or <b>Premium</b> — the stores re-route.</figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== THESIS ===================== -->
+  <section class="thesis">
+    <div class="wrap">
+      <h2>It’s not one store’s list. <span class="q">It’s the right store for every item.</span></h2>
+    </div>
+  </section>
+
+  <!-- ===================== MULTI-STORE ===================== -->
+  <section class="band">
+    <div class="wrap band__grid">
+      <div>
+        <p class="kicker">Multi-store optimizer</p>
+        <h2>Sorts itself into the trip that fits your week.</h2>
+        <p>ListWise reads every item, sorts it into 22 grocery categories, and assigns each to the store type that does it best — produce to the market, meat to the butcher, bulk to the warehouse club. Then it plans the run for <b>Time</b>, <b>Cost</b>, or <b>Premium</b>.</p>
+      </div>
+      <ul class="list">
+        <li><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span><div><b>Time — fewest stops</b><span>Consolidate the run to one store so you’re in and out.</span></div></li>
+        <li><span class="ic g"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></span><div><b>Cost — lowest total</b><span>Split across discount and warehouse stores where it pays off.</span></div></li>
+        <li><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l2.6 5.3 5.9.9-4.3 4.1 1 5.8L12 22l-5.2-2.9 1-5.8L3.5 9.2l5.9-.9z"/></svg></span><div><b>Premium — best quality</b><span>Send each item to the specialist that does it best.</span></div></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ===================== CAPTURE ===================== -->
+  <section class="band">
+    <div class="wrap band__grid flip">
+      <div>
+        <p class="kicker">Capture, hands-free</p>
+        <h2>Talk it, snap it, or paste it.</h2>
+        <p>Rattle off items by voice while you cook. Snap a receipt or a scrawled paper list and Apple’s on-device AI reads it, parses the items, and files them into the right stores — no typing, and nothing leaves your phone.</p>
+      </div>
+      <div class="panel capture" aria-label="Capture methods">
+        <div class="cap-row"><span class="ci"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="3" width="6" height="12" rx="3"/><path d="M6 11a6 6 0 0 0 12 0M12 17v4"/></svg></span><div class="t"><b>Voice capture</b><span>“Two lemons, milk, olive oil…”</span></div><span class="live"><i></i>Listening</span></div>
+        <div class="cap-row"><span class="ci"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8V6a2 2 0 0 1 2-2h2M16 4h2a2 2 0 0 1 2 2v2M20 16v2a2 2 0 0 1-2 2h-2M8 20H6a2 2 0 0 1-2-2v-2"/><path d="M8 12h8"/></svg></span><div class="t"><b>Scan a receipt or list</b><span>On-device parsing — items, prices, quantities.</span></div></div>
+        <div class="cap-row"><span class="ci"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 4h9a2 2 0 0 1 2 2v12M16 8H7a2 2 0 0 0-2 2v10"/></svg></span><div class="t"><b>Paste any text</b><span>Drop in a block of items; ListWise sorts it out.</span></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== HOUSEHOLD ===================== -->
+  <section class="band">
+    <div class="wrap band__grid">
+      <div>
+        <p class="kicker">Shared in real time</p>
+        <h2>The whole household, one live list.</h2>
+        <p>Share a list and it syncs instantly over iCloud — add coffee from the kitchen, watch it appear at the store; check off the milk, watch it cross out on their phone. Personal lists stay personal and never touch the network.</p>
+      </div>
+      <div class="panel house" aria-label="Shared list preview">
+        <div class="who">
+          <span class="av a1">JR</span><span class="av a2">SM</span><span class="av a3">AL</span>
+          <span class="tag" style="margin-left:4px">Ratley household · 3</span>
+        </div>
+        <div>
+          <div class="r"><span class="b on"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12.5l5 5L20 6"/></svg></span><span class="nm">Whole milk</span><span class="tag">you</span></div>
+          <div class="r"><span class="b"></span><span class="nm">Coffee beans</span><span class="tag">+ Sam</span></div>
+          <div class="r"><span class="b"></span><span class="nm">Dish soap</span><span class="tag">+ Alex</span></div>
+          <div class="r"><span class="b on"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12.5l5 5L20 6"/></svg></span><span class="nm">Paper towels</span><span class="tag">+ Sam</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== PRICE + BUDGET ===================== -->
+  <section class="band">
+    <div class="wrap band__grid flip">
+      <div>
+        <p class="kicker">Price intelligence &amp; budget</p>
+        <h2>Know a good price when you see one.</h2>
+        <p>ListWise learns what things usually cost and flags a genuine deal, keeps a running total against your budget, and remembers your spend trip to trip — so the number at the register is never a surprise.</p>
+      </div>
+      <div class="panel budget" aria-label="Budget preview">
+        <div class="brow"><span class="amt">$63.40</span><span class="cap">of $80.00</span></div>
+        <div class="bar"><i></i></div>
+        <div class="grid2">
+          <div class="st"><div class="k">This trip</div><div class="v">$63.40</div></div>
+          <div class="st"><div class="k">vs. last trip</div><div class="v down">−$11.20</div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== LIBRARY / DETAILS ===================== -->
+  <section class="band">
+    <div class="wrap">
+      <p class="kicker">And the everyday details</p>
+      <h2 style="font-size:var(--s-3);max-width:24ch;margin-bottom:.5rem;letter-spacing:-.03em">Small things that make it the one you actually keep using.</h2>
+      <div class="grid">
+        <div class="card"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5h16v14H4z"/><path d="M4 9h16M9 9v10"/></svg></span><b>Recipe &amp; template library</b><span>Load a recipe or a saved template and it fills the list, pre-sorted.</span></div>
+        <div class="card"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v18M5 8l7-5 7 5"/></svg></span><b>Smart suggestions</b><span>Restock nudges for the staples you buy on a rhythm.</span></div>
+        <div class="card"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span><b>History</b><span>Every past trip is saved — reorder a whole run in a tap.</span></div>
+        <div class="card"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span><b>Quantities &amp; categories</b><span>×2, 500g, a dozen — sorted into 22 tuned grocery aisles.</span></div>
+        <div class="card"><span class="ic g"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7 3v6c0 5-3.5 8-7 9-3.5-1-7-4-7-9V6z"/><path d="M9.5 12l1.8 1.8 3.4-3.6"/></svg></span><b>Private by default</b><span>On-device AI; personal lists never leave your phone.</span></div>
+        <div class="card"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7h13l3 5v5h-3M3 7v10h3M9 17h6"/><circle cx="7.5" cy="17.5" r="1.6"/><circle cx="17.5" cy="17.5" r="1.6"/></svg></span><b>Store manager</b><span>Save your real stores; ListWise normalizes duplicates.</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== PRICING ===================== -->
+  <section class="pricing">
+    <div class="wrap">
+      <div class="box">
+        <h2>Free to start. Premium when you’re hooked.</h2>
+        <p>Build and sort lists for free. ListWise Premium unlocks unlimited voice capture, receipt &amp; handwritten-list scanning, real-time household sharing, price intelligence, and smart suggestions.</p>
+        <div class="plans">
+          <div class="plan"><b>Lifetime</b><span>One-time — yours forever</span></div>
+          <div class="plan"><b>Monthly</b><span>Free trial, cancel anytime</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== FOOTER ===================== -->
+  <footer class="foot">
+    <div class="wrap">
+      <h2 class="wordmark">List<span class="w">Wise</span></h2>
+      <p class="tag">Smarter lists, faster trips, less waste.</p>
+      <nav class="links" aria-label="Footer">
+        <a href="#">App Store</a><a href="#">Privacy</a><a href="#">Support</a><a href="/">Sottoapps</a><a href="/sottoplayer">Sotto Player</a>
+      </nav>
+      <p class="fine">A Sottoapps app — for iPhone &amp; iPad.</p>
+    </div>
+  </footer>
+</div>
+
+<script>
+  (function(){
+    var planner = document.getElementById('planner');
+    if(!planner) return;
+    var segs = planner.querySelectorAll('.seg button');
+    var views = {
+      time: planner.querySelector('.v-time'),
+      cost: planner.querySelector('.v-cost'),
+      premium: planner.querySelector('.v-premium')
+    };
+    segs.forEach(function(b){
+      b.addEventListener('click', function(){
+        var set = b.getAttribute('data-set');
+        planner.setAttribute('data-mode', set);
+        Object.keys(views).forEach(function(k){ views[k].hidden = (k !== set); });
+        segs.forEach(function(x){
+          var on = x === b;
+          x.classList.toggle('on', on);
+          x.setAttribute('aria-pressed', on ? 'true' : 'false');
+        });
+      });
+    });
+    // tap to check — mirror the same item across all three plans by name
+    planner.querySelectorAll('.item').forEach(function(it){
+      it.addEventListener('click', function(){
+        var name = it.querySelector('.nm').textContent;
+        var now = !it.classList.contains('done');
+        planner.querySelectorAll('.item').forEach(function(o){
+          if(o.querySelector('.nm').textContent === name){ o.classList.toggle('done', now); }
+        });
+      });
+    });
+  })();
+</script>
