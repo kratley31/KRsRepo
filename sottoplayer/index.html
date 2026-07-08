@@ -153,10 +153,31 @@
   .shots{padding-block:clamp(8px,3vh,26px) clamp(24px,5vh,56px)}
   .shot-wide{border-radius:20px;overflow:hidden;border:1px solid var(--hairline);box-shadow:var(--shadow);margin:0 auto;max-width:1000px}
   .shot-wide img{width:100%;height:auto}
-  .shots__grid{display:grid;gap:clamp(16px,2.5vw,26px);grid-template-columns:repeat(auto-fit,minmax(230px,1fr));max-width:940px;margin-inline:auto}
-  @media(min-width:900px){.shots__grid{grid-template-columns:repeat(3,1fr)}}
-  .shot-card{margin:0;border-radius:22px;overflow:hidden;border:1px solid var(--hairline);box-shadow:var(--shadow)}
-  .shot-card img{width:100%;height:auto}
+  .carousel{position:relative;max-width:1040px;margin-inline:auto}
+  .carousel__track{display:flex;gap:clamp(16px,3vw,28px);overflow-x:auto;scroll-snap-type:x mandatory;
+    scroll-behavior:smooth;padding:6px 4px 12px;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+  .carousel__track::-webkit-scrollbar{display:none}
+  .carousel__track:focus-visible{outline:2px solid var(--blue);outline-offset:4px;border-radius:26px}
+  .carousel__item{margin:0;flex:0 0 auto;width:min(300px,72vw);scroll-snap-align:center;
+    border-radius:26px;overflow:hidden;border:1px solid var(--hairline);box-shadow:var(--shadow)}
+  .carousel__item img{width:100%;height:auto;display:block}
+  .carousel__nav{position:absolute;top:calc(50% - 6px);transform:translateY(-50%);z-index:2;
+    width:48px;height:48px;border-radius:50%;border:1px solid var(--hairline);
+    background:rgba(18,18,24,.74);backdrop-filter:blur(8px);color:var(--ink);
+    font-size:1.6rem;line-height:0;cursor:pointer;display:flex;align-items:center;justify-content:center;
+    transition:background .2s,transform .2s,opacity .2s}
+  .carousel__nav:hover{background:var(--blue);border-color:var(--blue);transform:translateY(-50%) scale(1.06)}
+  .carousel__nav:disabled{opacity:.28;cursor:default}
+  .carousel__nav:disabled:hover{background:rgba(18,18,24,.74);border-color:var(--hairline);transform:translateY(-50%)}
+  .carousel__nav.prev{left:-6px}
+  .carousel__nav.next{right:-6px}
+  @media(max-width:600px){.carousel__nav{display:none}}
+  .carousel__dots{display:flex;gap:9px;justify-content:center;margin-top:22px;flex-wrap:wrap}
+  .carousel__dots button{width:8px;height:8px;padding:0;border-radius:50%;border:0;cursor:pointer;
+    background:var(--mute-2);opacity:.5;transition:opacity .2s,background .2s,transform .2s}
+  .carousel__dots button.is-active{background:var(--blue);opacity:1;transform:scale(1.3)}
+  .carousel__hint{text-align:center;margin-top:12px;font-family:var(--mono);font-size:.72rem;
+    letter-spacing:.05em;color:var(--mute-2)}
 
   /* ---------- POWER GRID ---------- */
   .power{padding-block:clamp(56px,10vh,110px);border-top:1px solid var(--hairline)}
@@ -284,15 +305,21 @@
         <img src="img/hero.png" alt="Sotto shown on two phones: the audiobook player, and the “Listen privately” privacy screen." loading="lazy" width="2560" height="1440">
       </figure>
 
-      <div class="shots__grid">
-        <figure class="shot-card"><img src="img/01-privacy.png" alt="01 · Privacy — “Listen privately.” Sotto hides album art on the lock screen, in Control Center, and over AirPlay." loading="lazy"></figure>
-        <figure class="shot-card"><img src="img/02-control.png" alt="02 · Control — “You decide what shows.” Show real art, hide it, use your own image, shuffle a pool, or run a live visualizer." loading="lazy"></figure>
-        <figure class="shot-card"><img src="img/03-disguise.png" alt="03 · Disguise — “Give every cover a cover story.” Replace artwork with images from your own pool on the lock screen, AirPlay and CarPlay." loading="lazy"></figure>
-        <figure class="shot-card"><img src="img/04-identity.png" alt="04 · Identity — “Rename anything.” Retitle a book and its author so lock-screen metadata stays between you and you." loading="lazy"></figure>
-        <figure class="shot-card"><img src="img/05-library.png" alt="05 · Library — “Everything you listen to.” Music, audiobooks and podcasts in one calm, private library." loading="lazy"></figure>
-        <figure class="shot-card"><img src="img/06-notes.png" alt="06 · Notes — “Save the moment, keep the words.” Bookmark a passage and Sotto transcribes and summarizes it on device." loading="lazy"></figure>
-        <figure class="shot-card"><img src="img/07-insight.png" alt="07 · Insight — “Stats that stay on your device.” Track streaks and daily listening, computed on device and never uploaded." loading="lazy"></figure>
+      <div class="carousel" role="group" aria-roledescription="carousel" aria-label="Sotto feature screenshots">
+        <button class="carousel__nav prev" type="button" aria-label="Previous screenshot" aria-hidden="true">&#8249;</button>
+        <div class="carousel__track" id="shotTrack" tabindex="0" aria-label="Feature screenshots, scrollable">
+          <figure class="carousel__item"><img src="img/01-privacy.png" alt="01 · Privacy — “Listen privately.” Sotto hides album art on the lock screen, in Control Center, and over AirPlay." loading="lazy"></figure>
+          <figure class="carousel__item"><img src="img/02-control.png" alt="02 · Control — “You decide what shows.” Show real art, hide it, use your own image, shuffle a pool, or run a live visualizer." loading="lazy"></figure>
+          <figure class="carousel__item"><img src="img/03-disguise.png" alt="03 · Disguise — “Give every cover a cover story.” Replace artwork with images from your own pool on the lock screen, AirPlay and CarPlay." loading="lazy"></figure>
+          <figure class="carousel__item"><img src="img/04-identity.png" alt="04 · Identity — “Rename anything.” Retitle a book and its author so lock-screen metadata stays between you and you." loading="lazy"></figure>
+          <figure class="carousel__item"><img src="img/05-library.png" alt="05 · Library — “Everything you listen to.” Music, audiobooks and podcasts in one calm, private library." loading="lazy"></figure>
+          <figure class="carousel__item"><img src="img/06-notes.png" alt="06 · Notes — “Save the moment, keep the words.” Bookmark a passage and Sotto transcribes and summarizes it on device." loading="lazy"></figure>
+          <figure class="carousel__item"><img src="img/07-insight.png" alt="07 · Insight — “Stats that stay on your device.” Track streaks and daily listening, computed on device and never uploaded." loading="lazy"></figure>
+        </div>
+        <button class="carousel__nav next" type="button" aria-label="Next screenshot" aria-hidden="true">&#8250;</button>
       </div>
+      <div class="carousel__dots" id="shotDots" aria-hidden="true"></div>
+      <p class="carousel__hint">Swipe, or use the arrows &amp; dots</p>
 
       <figure class="shot-wide" style="margin-top:clamp(28px,5vw,52px)">
         <img src="img/showcase.png" alt="Your library, on your terms: the Audiobooks Privacy settings, a now-playing screen with a custom cover, and the unified Library." loading="lazy" width="2560" height="1440">
@@ -347,6 +374,50 @@
         btns.forEach(function(x){var on=x===b;x.classList.toggle('is-active',on);x.setAttribute('aria-pressed',on?'true':'false');});
       });
     });
+  })();
+
+  (function(){
+    var track=document.getElementById('shotTrack');
+    var dotsWrap=document.getElementById('shotDots');
+    if(!track||!dotsWrap) return;
+    var items=Array.prototype.slice.call(track.children);
+    var prev=document.querySelector('.carousel__nav.prev');
+    var next=document.querySelector('.carousel__nav.next');
+
+    items.forEach(function(it,i){
+      var d=document.createElement('button');
+      d.type='button';
+      d.setAttribute('aria-label','Go to screenshot '+(i+1));
+      d.addEventListener('click',function(){ go(i); });
+      dotsWrap.appendChild(d);
+    });
+    var dots=Array.prototype.slice.call(dotsWrap.children);
+
+    function go(i){
+      i=Math.max(0,Math.min(items.length-1,i));
+      var it=items[i];
+      track.scrollTo({left: it.offsetLeft-(track.clientWidth-it.clientWidth)/2, behavior:'smooth'});
+    }
+    function current(){
+      var center=track.scrollLeft+track.clientWidth/2, best=0, bd=Infinity;
+      items.forEach(function(it,i){
+        var c=it.offsetLeft+it.clientWidth/2, d=Math.abs(c-center);
+        if(d<bd){bd=d;best=i;}
+      });
+      return best;
+    }
+    function update(){
+      var i=current();
+      dots.forEach(function(d,j){ d.classList.toggle('is-active',j===i); });
+      if(prev) prev.disabled = track.scrollLeft<=2;
+      if(next) next.disabled = track.scrollLeft>=track.scrollWidth-track.clientWidth-2;
+    }
+    var raf;
+    track.addEventListener('scroll',function(){ if(raf) cancelAnimationFrame(raf); raf=requestAnimationFrame(update); },{passive:true});
+    if(prev) prev.addEventListener('click',function(){ go(current()-1); });
+    if(next) next.addEventListener('click',function(){ go(current()+1); });
+    window.addEventListener('resize',update);
+    update();
   })();
 </script>
 </body>
