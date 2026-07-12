@@ -1,4 +1,18 @@
 <title>ListWise — Smarter lists, faster trips</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="ListWise routes one grocery list to the right store for every item — optimized for the fewest stops, the lowest total, or the best quality. For iPhone & iPad.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="ListWise — Smarter lists, faster trips">
+<meta property="og:description" content="One list, routed to every store. Optimize each trip for time, cost, or quality.">
+<meta property="og:url" content="https://sottoapps.com/listwise/">
+<meta property="og:image" content="https://sottoapps.com/listwise/img/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="ListWise — Smarter lists, faster trips">
+<meta name="twitter:description" content="One list, routed to every store. Optimize each trip for time, cost, or quality.">
+<meta name="twitter:image" content="https://sottoapps.com/listwise/img/og-image.png">
 <style>
   :root{
     --bg:#F4F6FA;            /* cool iOS-grouped light */
@@ -176,6 +190,14 @@
   .pricing .plan{background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.24);border-radius:14px;padding:12px 18px}
   .pricing .plan b{display:block;font-size:1rem}
   .pricing .plan span{font-size:.82rem;color:rgba(255,255,255,.8)}
+  .pricing .worth{display:grid;gap:13px;grid-template-columns:1fr;margin-top:2px}
+  @media(min-width:640px){.pricing .worth{grid-template-columns:1fr 1fr}}
+  .pricing .w-card{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.22);border-radius:16px;padding:16px 18px}
+  .pricing .w-card b{display:flex;align-items:center;gap:9px;font-size:1.02rem;margin-bottom:6px}
+  .pricing .w-card b svg{width:18px;height:18px;flex:none}
+  .pricing .w-card span{display:block;font-size:.9rem;color:rgba(255,255,255,.85);line-height:1.5}
+  .pricing .soon{font-size:.88rem;color:rgba(255,255,255,.82);margin-top:2px}
+  .pricing .soon b{font-weight:650;color:#fff}
 
   /* ---------- FOOTER ---------- */
   .foot{padding-block:clamp(56px,10vh,110px);border-top:1px solid var(--line);text-align:center}
@@ -186,6 +208,22 @@
   .foot .links a{text-decoration:none;color:var(--mute-2);transition:color .2s}
   .foot .links a:hover{color:var(--blue)}
   .foot .fine{margin-top:1.8rem;color:var(--mute-2);font-size:.78rem}
+
+  /* ---------- REAL SCREENSHOTS ---------- */
+  .shots{padding-block:clamp(48px,9vh,92px);border-top:1px solid var(--line)}
+  .shots h2{font-size:var(--s-3);max-width:22ch;letter-spacing:-.03em;margin-bottom:.5rem}
+  .shots p{color:var(--mute);max-width:48ch;margin-bottom:2rem}
+  .shots__scroll{display:flex;gap:clamp(14px,3vw,30px);overflow-x:auto;scroll-snap-type:x mandatory;
+    padding:6px 0 24px;margin-inline:calc(-1*clamp(20px,5vw,56px));padding-inline:clamp(20px,5vw,56px);
+    -webkit-overflow-scrolling:touch;scrollbar-width:none}
+  .shots__scroll::-webkit-scrollbar{height:0}
+  .shot{scroll-snap-align:center;flex:0 0 auto;width:min(246px,62vw);margin:0}
+  .shot img{width:100%;height:auto;display:block;filter:drop-shadow(0 18px 30px rgba(15,23,42,.16))}
+  .shot figcaption{font-family:var(--mono);font-size:.72rem;letter-spacing:.05em;color:var(--mute-2);
+    text-align:center;margin-top:.5rem}
+  .shots__hint{font-family:var(--mono);font-size:.72rem;letter-spacing:.06em;text-transform:uppercase;
+    color:var(--mute-2);display:flex;align-items:center;gap:8px;margin-top:2px}
+  .shots__hint svg{width:15px;height:15px}
 
   a:focus-visible,button:focus-visible{outline:2px solid var(--blue);outline-offset:3px;border-radius:6px}
   @media(prefers-reduced-motion:reduce){*{transition-duration:.001ms !important}}
@@ -376,16 +414,48 @@
     </div>
   </section>
 
+  <!-- ===================== REAL SCREENSHOTS ===================== -->
+  <section class="shots" aria-label="App screenshots">
+    <div class="wrap">
+      <p class="kicker">Straight from the app</p>
+      <h2>See it on your phone.</h2>
+      <p>Real screens from ListWise — one list, split across the exact stores that fit the trip.</p>
+      <div class="shots__scroll">
+        <figure class="shot"><img src="img/web-01-hero.png" width="808" height="1512" loading="lazy" decoding="async" alt="ListWise trip snapshot: 35 items across 3 stores with an estimated total"><figcaption>Trip snapshot</figcaption></figure>
+        <figure class="shot"><img src="img/web-02-grocery.png" width="808" height="1512" loading="lazy" decoding="async" alt="Grocery store tab in ListWise, 29 items grouped by produce and category"><figcaption>Grocery, by aisle</figcaption></figure>
+        <figure class="shot"><img src="img/web-03-warehouse.png" width="808" height="1512" loading="lazy" decoding="async" alt="Warehouse Club tab showing hygiene, household paper and cleaning items"><figcaption>Warehouse run</figcaption></figure>
+        <figure class="shot"><img src="img/web-04-library.png" width="808" height="1512" loading="lazy" decoding="async" alt="ListWise Library with Templates, Recipes and Custom lists"><figcaption>Library</figcaption></figure>
+        <figure class="shot"><img src="img/web-05-templates.png" width="808" height="1512" loading="lazy" decoding="async" alt="Template folders: Holiday, Party, Weekly, Meal Prep and Specialty"><figcaption>70+ templates</figcaption></figure>
+        <figure class="shot"><img src="img/web-06-recipes.png" width="808" height="1512" loading="lazy" decoding="async" alt="Recipe categories including beef, chicken, pasta and vegetarian"><figcaption>Recipe library</figcaption></figure>
+      </div>
+      <p class="shots__hint" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        Swipe to explore
+      </p>
+    </div>
+  </section>
+
   <!-- ===================== PRICING ===================== -->
   <section class="pricing">
     <div class="wrap">
       <div class="box">
-        <h2>Free to start. Premium when you’re hooked.</h2>
-        <p>Build and sort lists for free. ListWise Premium unlocks unlimited voice capture, receipt &amp; handwritten-list scanning, real-time household sharing, price intelligence, and smart suggestions.</p>
+        <h2>Free to start. Premium if you love it.</h2>
+        <p>Build and sort lists for free. Premium is the upgrade that pays for itself — in the time you save on every trip and the money you save at the register.</p>
+        <div class="worth">
+          <div class="w-card">
+            <b><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>Saves you time</b>
+            <span>Every item sorts itself into the right aisle and the right store automatically — no rewriting the list in your head. And family sharing keeps one live list for the whole household, so there are no group texts and no doubled-up trips.</span>
+          </div>
+          <div class="w-card">
+            <b><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>Saves you money</b>
+            <span>Per-unit price comparison ($/lb, $/oz) sends each item to the store where it’s genuinely cheapest — the real best deal, not just the lowest sticker. A few smarter picks a week and Premium has already paid for itself.</span>
+          </div>
+        </div>
         <div class="plans">
           <div class="plan"><b>Lifetime</b><span>One-time — yours forever</span></div>
           <div class="plan"><b>Monthly</b><span>Free trial, cancel anytime</span></div>
         </div>
+        <p class="soon"><b>And it keeps getting better.</b> New features and refinements roll out regularly — all included, at no extra cost.</p>
       </div>
     </div>
   </section>
