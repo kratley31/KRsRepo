@@ -1,5 +1,8 @@
-<title>ListWise — Smarter lists, faster trips</title>
+<!doctype html>
+<html lang="en">
+<head>
 <meta charset="utf-8">
+<title>ListWise — Smarter lists, faster trips</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="ListWise routes one grocery list to the right store for every item — optimized for the fewest stops, the lowest total, or the best quality. For iPhone & iPad.">
 <meta property="og:type" content="website">
@@ -20,15 +23,16 @@
     --raise:#FBFCFE;
     --ink:#0F172A;           /* slate-900 */
     --ink-2:#334155;
-    --mute:#64748B;          /* slate-500 */
-    --mute-2:#94A3B8;
+    --mute:#5C6A7E;          /* darkened from #64748B (slate-500) for WCAG AA contrast */
+    --mute-2:#616E83;        /* darkened from #94A3B8 for WCAG AA contrast */
     --line:#E5E9F1;
     --line-2:#EEF1F6;
     --blue:#2563EB;          /* app primary */
     --blue-deep:#1D4ED8;
     --blue-soft:#EAF0FE;
-    --green:#10B981;         /* app success */
+    --green:#10B981;         /* app success — icons/fills only */
     --green-soft:#E6F8F1;
+    --green-ink:#0B7A5B;     /* accessible green for text on light bg (WCAG AA) */
     --amber:#F59E0B;
     /* store-type colors, from the app */
     --st-market:#12A187;--st-butcher:#D23D4E;--st-super:#2F6EE0;
@@ -41,6 +45,7 @@
   }
   *{box-sizing:border-box}
   html{-webkit-text-size-adjust:100%}
+  body{margin:0}
   .page{margin:0}
   .page{
     background:
@@ -107,7 +112,7 @@
   .item .box{width:21px;height:21px;border-radius:50%;border:2px solid var(--line);flex:none;display:flex;align-items:center;justify-content:center;transition:background .2s,border-color .2s}
   .item .box svg{width:11px;height:11px;color:#fff;opacity:0;transition:opacity .15s}
   .item .nm{flex:1;min-width:0;font-size:.96rem}
-  .item .deal{font-family:var(--mono);font-size:.62rem;letter-spacing:.06em;text-transform:uppercase;color:var(--green);background:var(--green-soft);border-radius:999px;padding:3px 8px}
+  .item .deal{font-family:var(--mono);font-size:.62rem;letter-spacing:.06em;text-transform:uppercase;color:var(--green-ink);background:var(--green-soft);border-radius:999px;padding:3px 8px}
   .item.done .box{background:var(--green);border-color:var(--green)}
   .item.done .box svg{opacity:1}
   .item.done .nm{color:var(--mute-2);text-decoration:line-through;text-decoration-color:var(--line)}
@@ -143,13 +148,13 @@
   .cap-row .ci svg{width:20px;height:20px;color:var(--blue)}
   .cap-row .t b{display:block;font-weight:650;font-size:.98rem}
   .cap-row .t span{color:var(--mute);font-size:.86rem}
-  .cap-row .live{margin-left:auto;font-family:var(--mono);font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;color:var(--green);display:inline-flex;align-items:center;gap:6px}
+  .cap-row .live{margin-left:auto;font-family:var(--mono);font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;color:var(--green-ink);display:inline-flex;align-items:center;gap:6px}
   .cap-row .live i{width:7px;height:7px;border-radius:50%;background:var(--green)}
   /* household */
   .house{display:grid;gap:10px}
   .house .who{display:flex;align-items:center;gap:10px}
   .house .av{width:30px;height:30px;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-size:.72rem;font-weight:700}
-  .house .a1{background:#2563EB}.house .a2{background:#12A187}.house .a3{background:#F59E0B}
+  .house .a1{background:#2563EB}.house .a2{background:#0D8168}.house .a3{background:#A86400}
   .house .r{display:flex;align-items:center;gap:11px;padding:9px 2px}
   .house .r+.r{border-top:1px solid var(--line-2)}
   .house .b{width:19px;height:19px;border-radius:50%;border:2px solid var(--line);flex:none;display:flex;align-items:center;justify-content:center}
@@ -168,7 +173,7 @@
   .budget .st{border:1px solid var(--line);border-radius:12px;padding:11px 13px}
   .budget .st .k{font-size:.78rem;color:var(--mute)}
   .budget .st .v{font-family:var(--mono);font-weight:700;font-variant-numeric:tabular-nums;font-size:1.05rem}
-  .budget .st .v.down{color:var(--green)}
+  .budget .st .v.down{color:var(--green-ink)}
 
   /* ---------- POWER GRID ---------- */
   .grid{display:grid;gap:14px;grid-template-columns:repeat(2,1fr);margin-top:8px}
@@ -182,21 +187,21 @@
 
   /* ---------- PRICING NOTE ---------- */
   .pricing{border-top:1px solid var(--line);padding-block:clamp(44px,8vh,80px)}
-  .pricing .box{background:linear-gradient(135deg,var(--blue),#3b74f0);color:#fff;border-radius:22px;padding:clamp(26px,4vw,40px);
+  .pricing .box{background:linear-gradient(135deg,var(--blue-deep),var(--blue));color:#fff;border-radius:22px;padding:clamp(26px,4vw,40px);
     display:grid;gap:16px;box-shadow:var(--shadow)}
   .pricing h2{color:#fff;font-size:var(--s-2)}
-  .pricing p{color:rgba(255,255,255,.86);max-width:52ch}
+  .pricing p{color:rgba(255,255,255,.94);max-width:52ch}
   .pricing .plans{display:flex;flex-wrap:wrap;gap:12px;margin-top:4px}
-  .pricing .plan{background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.24);border-radius:14px;padding:12px 18px}
+  .pricing .plan{background:rgba(0,0,0,.16);border:1px solid rgba(255,255,255,.24);border-radius:14px;padding:12px 18px}
   .pricing .plan b{display:block;font-size:1rem}
-  .pricing .plan span{font-size:.82rem;color:rgba(255,255,255,.8)}
+  .pricing .plan span{font-size:.82rem;color:rgba(255,255,255,.9)}
   .pricing .worth{display:grid;gap:13px;grid-template-columns:1fr;margin-top:2px}
   @media(min-width:640px){.pricing .worth{grid-template-columns:1fr 1fr}}
-  .pricing .w-card{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.22);border-radius:16px;padding:16px 18px}
+  .pricing .w-card{background:rgba(0,0,0,.14);border:1px solid rgba(255,255,255,.22);border-radius:16px;padding:16px 18px}
   .pricing .w-card b{display:flex;align-items:center;gap:9px;font-size:1.02rem;margin-bottom:6px}
   .pricing .w-card b svg{width:18px;height:18px;flex:none}
-  .pricing .w-card span{display:block;font-size:.9rem;color:rgba(255,255,255,.85);line-height:1.5}
-  .pricing .soon{font-size:.88rem;color:rgba(255,255,255,.82);margin-top:2px}
+  .pricing .w-card span{display:block;font-size:.9rem;color:rgba(255,255,255,.9);line-height:1.5}
+  .pricing .soon{font-size:.88rem;color:rgba(255,255,255,.94);margin-top:2px}
   .pricing .soon b{font-weight:650;color:#fff}
 
   /* ---------- FOOTER ---------- */
@@ -225,15 +230,22 @@
     color:var(--mute-2);display:flex;align-items:center;gap:8px;margin-top:2px}
   .shots__hint svg{width:15px;height:15px}
 
-  a:focus-visible,button:focus-visible{outline:2px solid var(--blue);outline-offset:3px;border-radius:6px}
+  a:focus-visible,button:focus-visible,.item:focus-visible{outline:2px solid var(--blue);outline-offset:2px;border-radius:6px}
+  .skip{position:absolute;left:12px;top:-60px;z-index:100;background:var(--ink);color:#fff;
+    padding:10px 16px;border-radius:8px;font-weight:700;text-decoration:none;transition:top .15s}
+  .skip:focus{top:12px}
   @media(prefers-reduced-motion:reduce){*{transition-duration:.001ms !important}}
 </style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
 
 <div class="page">
   <nav class="topnav" aria-label="Sottoapps">
     <a href="/">Sottoapps</a><span aria-hidden="true">/</span><span>ListWise</span>
   </nav>
 
+  <main id="main">
   <!-- ===================== HERO ===================== -->
   <section class="hero">
     <div class="wrap">
@@ -332,7 +344,7 @@
         <h2>Sorts itself into the trip that fits your week.</h2>
         <p>ListWise reads every item, sorts it into 22 grocery categories, and assigns each to the store type that does it best — produce to the market, meat to the butcher, bulk to the warehouse club. Then it plans the run for <b>Time</b>, <b>Cost</b>, or <b>Premium</b>.</p>
       </div>
-      <ul class="list">
+      <ul class="list" role="list">
         <li><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span><div><b>Time — fewest stops</b><span>Consolidate the run to one store so you’re in and out.</span></div></li>
         <li><span class="ic g"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></span><div><b>Cost — lowest total</b><span>Split across discount and warehouse stores where it pays off.</span></div></li>
         <li><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l2.6 5.3 5.9.9-4.3 4.1 1 5.8L12 22l-5.2-2.9 1-5.8L3.5 9.2l5.9-.9z"/></svg></span><div><b>Premium — best quality</b><span>Send each item to the specialist that does it best.</span></div></li>
@@ -460,13 +472,15 @@
     </div>
   </section>
 
+  </main>
+
   <!-- ===================== FOOTER ===================== -->
   <footer class="foot">
     <div class="wrap">
       <h2 class="wordmark">List<span class="w">Wise</span></h2>
       <p class="tag">Smarter lists, faster trips, less waste.</p>
       <nav class="links" aria-label="Footer">
-        <a href="#">App Store</a><a href="privacypolicy.html">Privacy</a><a href="/support?app=listwise">Support</a><a href="/">Sottoapps</a><a href="/sottoplayer">Sotto Player</a>
+        <a href="#">App Store</a><a href="privacypolicy.html">Privacy</a><a href="/support?app=listwise">Support</a><a href="/accessibility.html">Accessibility</a><a href="/">Sottoapps</a><a href="/sottoplayer">Sotto Player</a>
       </nav>
       <p class="fine">A Sottoapps app — for iPhone &amp; iPad.</p>
     </div>
@@ -495,15 +509,28 @@
         });
       });
     });
-    // tap to check — mirror the same item across all three plans by name
+    // tap (or keyboard) to check — mirror the same item across all three plans by name.
+    // Rows are exposed as checkboxes so they're keyboard-operable and announced by AT.
+    function toggleItem(it){
+      var name = it.querySelector('.nm').textContent;
+      var now = !it.classList.contains('done');
+      planner.querySelectorAll('.item').forEach(function(o){
+        if(o.querySelector('.nm').textContent === name){
+          o.classList.toggle('done', now);
+          o.setAttribute('aria-checked', now ? 'true' : 'false');
+        }
+      });
+    }
     planner.querySelectorAll('.item').forEach(function(it){
-      it.addEventListener('click', function(){
-        var name = it.querySelector('.nm').textContent;
-        var now = !it.classList.contains('done');
-        planner.querySelectorAll('.item').forEach(function(o){
-          if(o.querySelector('.nm').textContent === name){ o.classList.toggle('done', now); }
-        });
+      it.setAttribute('role','checkbox');
+      it.setAttribute('tabindex','0');
+      it.setAttribute('aria-checked', it.classList.contains('done') ? 'true' : 'false');
+      it.addEventListener('click', function(){ toggleItem(it); });
+      it.addEventListener('keydown', function(e){
+        if(e.key === ' ' || e.key === 'Enter'){ e.preventDefault(); toggleItem(it); }
       });
     });
   })();
 </script>
+</body>
+</html>

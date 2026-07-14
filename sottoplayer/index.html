@@ -17,7 +17,7 @@
     --hairline:#24242E;
     --ink:#F4F4F8;
     --mute:#9C9CAC;
-    --mute-2:#63636F;
+    --mute-2:#818192;      /* raised from #63636F for WCAG AA contrast */
     --blue:#3E74FF;
     --blue-soft:rgba(62,116,255,.14);
     --indigo:#5B5BD6;
@@ -208,16 +208,21 @@
   .foot .fine{margin-top:1.8rem;color:var(--mute-2);font-size:.78rem}
 
   a:focus-visible,button:focus-visible{outline:2px solid var(--blue);outline-offset:3px;border-radius:6px}
+  .skip{position:absolute;left:12px;top:-60px;z-index:100;background:var(--ink);color:#0a0a0a;
+    padding:10px 16px;border-radius:8px;font-weight:700;text-decoration:none;transition:top .15s}
+  .skip:focus{top:12px}
   @media(prefers-reduced-motion:reduce){*{transition-duration:.001ms !important;scroll-behavior:auto}}
 </style>
 </head>
 <body>
+<a class="skip" href="#main">Skip to content</a>
 <div class="page">
 
   <nav class="nav" aria-label="Sottoapps">
     <a href="/">Sottoapps</a><span class="sep" aria-hidden="true">/</span><span>Sotto&nbsp;Player</span>
   </nav>
 
+  <main id="main">
   <!-- ================= HERO ================= -->
   <section class="hero">
     <div class="wrap">
@@ -321,11 +326,12 @@
         <div class="card"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5h16M4 12h16M4 19h10"/></svg></span><b>Chapters</b><span>Jump by chapter, with seek scoped to where you are.</span></div>
         <div class="card"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L4 14h6l-1 8 9-12h-6z"/></svg></span><b>Variable speed</b><span>Separate defaults for books and music — or override per title.</span></div>
         <div class="card"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="13" r="8"/><path d="M12 9v4l2 2M9 2h6"/></svg></span><b>Fading sleep timer</b><span>Eases the volume down instead of cutting off mid-sentence.</span></div>
-        <div class="card"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 4v16M12 4v16M18 4v16"/><circle cx="6" cy="9" r="2" fill="currentColor"/><circle cx="12" cy="14" r="2" fill="currentColor"/><circle cx="18" cy="8" r="2" fill="currentColor"/></svg></span><b>Full equalizer</b><span>Presets plus a per-title EQ override when a book needs it.</span></div>
+        <div class="card"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 4v16M12 4v16M18 4v16"/><circle cx="6" cy="9" r="2" fill="currentColor"/><circle cx="12" cy="14" r="2" fill="currentColor"/><circle cx="18" cy="8" r="2" fill="currentColor"/></svg></span><b>Full equalizer</b><span>Presets plus a per-title override — part of Sotto Premium, a one-time unlock.</span></div>
         <div class="card"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="3"/><path d="M9 9h6v6H9z"/></svg></span><b>On your device</b><span>No account, no ads, no trackers. Files and progress stay local.</span></div>
       </div>
     </div>
   </section>
+  </main>
 
   <!-- ================= CLOSING ================= -->
   <footer class="foot">
@@ -340,9 +346,9 @@
         </a>
       </div>
       <nav class="links" aria-label="Footer">
-        <a href="#">App Store</a><a href="/sottoplayer/privacy">Privacy</a><a href="/support?app=sotto">Support</a><a href="/">Sottoapps</a><a href="/listwise">ListWise</a>
+        <a href="#">App Store</a><a href="/sottoplayer/privacy">Privacy</a><a href="/support?app=sotto">Support</a><a href="/accessibility.html">Accessibility</a><a href="/">Sottoapps</a><a href="/listwise">ListWise</a>
       </nav>
-      <p class="fine">Audiobooks · Podcasts · Music — for iPhone &amp; iPad.</p>
+      <p class="fine">Audiobooks · Podcasts · Music — for iPhone &amp; iPad. Free to listen; Sotto Premium is a single one-time purchase — no subscription, no account.</p>
     </div>
   </footer>
 </div>

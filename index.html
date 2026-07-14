@@ -1,3 +1,8 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Sottoapps — small, careful apps</title>
 <style>
   :root{
@@ -5,7 +10,7 @@
     --ground-2:#111010;
     --ink:#ECE8E0;         /* warm off-white */
     --mute:#9C978C;
-    --mute-2:#6E6A61;
+    --mute-2:#8F897D;      /* raised from #6E6A61 for WCAG AA contrast */
     --line:#2B2926;
     --ember:#E39B63;       /* Sotto's warmth */
     --blue:#3B82F6;        /* ListWise's blue */
@@ -15,6 +20,7 @@
   }
   *{box-sizing:border-box}
   html{-webkit-text-size-adjust:100%}
+  body{margin:0}
   .page{margin:0;min-height:100vh;display:flex;flex-direction:column;
     background:
       radial-gradient(80% 50% at 20% 0%, rgba(227,155,99,.08), transparent 50%),
@@ -77,6 +83,8 @@
 
   @media(prefers-reduced-motion:reduce){.world--sotto .eq i{animation:none;height:44%}*{transition-duration:.001ms !important}}
 </style>
+</head>
+<body>
 
 <div class="page">
   <header>
@@ -126,7 +134,9 @@
   <footer>
     <div class="wrap foot">
       <span>© Sottoapps</span>
-      <span><a href="mailto:hello@sottoapps.com">hello@sottoapps.com</a></span>
+      <span><a href="/accessibility.html">Accessibility</a> · <a href="mailto:hello@sottoapps.com">hello@sottoapps.com</a></span>
     </div>
   </footer>
 </div>
+</body>
+</html>

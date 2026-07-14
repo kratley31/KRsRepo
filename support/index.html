@@ -1,11 +1,14 @@
-<title>Sottoapps — Support &amp; feedback</title>
+<!doctype html>
+<html lang="en">
+<head>
 <meta charset="utf-8">
+<title>Sottoapps — Support &amp; feedback</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="Get help or request a feature for ListWise and Sotto. Send a support ticket or feature request to the Sottoapps team.">
 <style>
   :root{
     --ground:#181715;--ground-2:#111010;--field:#1E1C1A;
-    --ink:#ECE8E0;--mute:#9C978C;--mute-2:#6E6A61;--line:#2B2926;--line-2:#3A3733;
+    --ink:#ECE8E0;--mute:#9C978C;--mute-2:#8F897D;--line:#2B2926;--line-2:#3A3733;
     --ember:#E39B63;--blue:#3B82F6;--green:#43B36E;
     --serif:ui-serif,"New York",Charter,Georgia,"Times New Roman",serif;
     --sans:ui-sans-serif,-apple-system,BlinkMacSystemFont,"SF Pro Text","Segoe UI",system-ui,sans-serif;
@@ -31,7 +34,7 @@
     letter-spacing:-.03em;line-height:1.02;margin:0}
   header h1 .dot{color:var(--ember)}
   .lede{color:var(--mute);font-size:1.06rem;max-width:46ch;margin:1rem 0 0}
-  .lede a{color:var(--blue);text-decoration:none}
+  .lede a{color:var(--blue);text-decoration:underline}
 
   form{margin-top:2.2rem;display:grid;gap:18px}
   .field{display:grid;gap:7px}
@@ -63,7 +66,7 @@
   .submit:hover{transform:translateY(-2px);filter:brightness(1.04)}
   .submit svg{width:18px;height:18px}
   .altline{font-size:.86rem;color:var(--mute-2);margin-top:2px}
-  .altline a{color:var(--blue);text-decoration:none}
+  .altline a{color:var(--blue);text-decoration:underline}
   .sent{display:none;align-items:flex-start;gap:12px;background:rgba(67,179,110,.12);
     border:1px solid rgba(67,179,110,.4);border-radius:14px;padding:14px 16px;color:var(--ink);font-size:.92rem}
   .sent.show{display:flex}
@@ -76,8 +79,13 @@
   .foot a{text-decoration:none;color:var(--mute-2)}
   .foot a:hover{color:var(--ink)}
   a:focus-visible,button:focus-visible{outline:2px solid var(--blue);outline-offset:3px;border-radius:6px}
+  .err{display:none;color:#F0A8A0;font-size:.85rem;margin-top:4px}
+  .err.show{display:block}
+  input[aria-invalid="true"],textarea[aria-invalid="true"]{border-color:#F0A8A0}
   @media(prefers-reduced-motion:reduce){*{transition-duration:.001ms !important}}
 </style>
+</head>
+<body>
 
 <div class="page">
   <div class="wrap">
@@ -85,6 +93,7 @@
       <a href="/">Sottoapps</a><span aria-hidden="true">/</span><span>Support</span>
     </nav>
 
+    <main>
     <header>
       <h1>How can we help<span class="dot">?</span></h1>
       <p class="lede">Report a problem or suggest a feature. Your message opens in your email app, addressed to <a href="mailto:info@sottoapps.com">info@sottoapps.com</a> — just hit send.</p>
@@ -111,6 +120,7 @@
         <div class="field">
           <label for="email">Your email <span class="req" title="required">*</span></label>
           <input type="email" id="email" name="email" placeholder="you@example.com" autocomplete="email" required>
+          <span class="err" id="emailErr">Please enter your email so we can reply to you.</span>
         </div>
       </div>
 
@@ -123,6 +133,7 @@
         <label for="message">Details <span class="req" title="required">*</span></label>
         <textarea id="message" name="message" placeholder="What happened, or what would you like to see? Steps to reproduce a bug are especially helpful." required></textarea>
         <span class="hint">For bugs, include your device and iOS version if you can.</span>
+        <span class="err" id="messageErr">Please add a few details before sending.</span>
       </div>
 
       <div class="field">
@@ -138,15 +149,16 @@
         <span>Your email app should have opened with your message ready. If it didn’t, email <a href="mailto:info@sottoapps.com">info@sottoapps.com</a> directly — nothing is sent until you press send.</span>
       </div>
 
-      <p class="privacy">We only use your email to reply to you. See the <a href="/listwise/privacypolicy.html" style="color:var(--blue);text-decoration:none">privacy policy</a>.</p>
+      <p class="privacy">We only use your email to reply to you. See the <a href="/listwise/privacypolicy.html" style="color:var(--blue);text-decoration:underline">privacy policy</a>.</p>
     </form>
+    </main>
   </div>
 
   <footer>
     <div class="wrap foot">
       <span>© Sottoapps</span>
       <nav aria-label="Footer">
-        <a href="/">Sottoapps</a> · <a href="/listwise">ListWise</a> · <a href="/sottoplayer">Sotto</a>
+        <a href="/">Sottoapps</a> · <a href="/listwise">ListWise</a> · <a href="/sottoplayer">Sotto</a> · <a href="/accessibility.html">Accessibility</a>
       </nav>
     </div>
   </footer>
@@ -167,6 +179,19 @@
       if(fr) fr.checked = true;
     }
 
+    // Clear a field's error state as soon as the user corrects it
+    ['email','message'].forEach(function(id){
+      var el = document.getElementById(id);
+      el.addEventListener('input', function(){
+        if(el.value.trim()){
+          el.removeAttribute('aria-invalid');
+          el.removeAttribute('aria-describedby');
+          var err = document.getElementById(id+'Err');
+          if(err) err.classList.remove('show');
+        }
+      });
+    });
+
     form.addEventListener('submit', function(e){
       e.preventDefault();
       var type = (form.querySelector('input[name="type"]:checked')||{}).value || 'Support ticket';
@@ -175,7 +200,21 @@
       var subject = document.getElementById('subject').value.trim();
       var message = document.getElementById('message').value.trim();
 
-      // Lightweight required-field check
+      // Required-field check with accessible error messaging (WCAG 3.3.1)
+      function setErr(id, errId, bad){
+        var el = document.getElementById(id), err = document.getElementById(errId);
+        if(bad){
+          el.setAttribute('aria-invalid','true');
+          el.setAttribute('aria-describedby', errId);
+          err.classList.add('show');
+        } else {
+          el.removeAttribute('aria-invalid');
+          el.removeAttribute('aria-describedby');
+          err.classList.remove('show');
+        }
+      }
+      setErr('email','emailErr', !email);
+      setErr('message','messageErr', !message);
       if(!email || !message){
         (!email ? document.getElementById('email') : document.getElementById('message')).focus();
         return;
@@ -200,3 +239,5 @@
     });
   })();
 </script>
+</body>
+</html>

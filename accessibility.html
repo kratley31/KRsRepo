@@ -1,0 +1,293 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Accessibility &amp; text-only version — Sottoapps</title>
+<meta name="description" content="A plain-text, screen-reader-friendly version of everything on sottoapps.com — the studio, the Sotto and ListWise apps, support, and privacy — plus our accessibility statement and descriptions of every image.">
+<style>
+  :root{
+    --bg:#ffffff;
+    --text:#1a1a1a;
+    --muted:#4a4a4a;
+    --link:#1450c4;
+    --link-hover:#0a2f7a;
+    --rule:#d6d6d6;
+    --mark-bg:#eef2fb;
+    --focus:#1450c4;
+  }
+  @media (prefers-color-scheme: dark){
+    :root{
+      --bg:#101215;
+      --text:#e9e9ec;
+      --muted:#b8b8c0;
+      --link:#8fb4ff;
+      --link-hover:#b9d0ff;
+      --rule:#31343a;
+      --mark-bg:#1a2740;
+      --focus:#8fb4ff;
+    }
+  }
+  *{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%}
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--text);
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",system-ui,Roboto,Helvetica,Arial,sans-serif;
+    font-size:1.125rem;
+    line-height:1.7;
+  }
+  .wrap{max-width:70ch;margin-inline:auto;padding:clamp(20px,4vw,40px)}
+  a{color:var(--link)}
+  a:hover{color:var(--link-hover)}
+  a:focus-visible{outline:3px solid var(--focus);outline-offset:2px;border-radius:3px}
+  /* Content links are underlined so they don't rely on color alone (WCAG 1.4.1) */
+  main a,header a,footer a,.toc a{text-decoration:underline}
+  h1{font-size:2rem;line-height:1.2;margin:0 0 .5rem}
+  h2{font-size:1.5rem;line-height:1.25;margin:2.5rem 0 .5rem;padding-top:1.2rem;border-top:2px solid var(--rule)}
+  h3{font-size:1.2rem;line-height:1.3;margin:1.6rem 0 .3rem}
+  p{margin:.7rem 0}
+  ul,ol{margin:.7rem 0;padding-left:1.5rem}
+  li{margin:.35rem 0}
+  .lead{font-size:1.2rem;color:var(--text)}
+  .muted{color:var(--muted)}
+  .meta{color:var(--muted);font-size:.95rem}
+  dl{margin:.7rem 0}
+  dt{font-weight:700;margin-top:1rem}
+  dd{margin:.15rem 0 0;padding-left:0}
+  .callout{background:var(--mark-bg);border:1px solid var(--rule);border-radius:8px;padding:1rem 1.2rem;margin:1.2rem 0}
+  .callout p:first-child{margin-top:0}
+  .callout p:last-child{margin-bottom:0}
+  .skip{position:absolute;left:12px;top:-60px;background:var(--text);color:var(--bg);
+    padding:10px 16px;border-radius:8px;font-weight:700;text-decoration:none;z-index:10;transition:top .12s}
+  .skip:focus{top:12px}
+  nav.toc ul{list-style:none;padding-left:0}
+  nav.toc li{margin:.25rem 0}
+  footer{margin-top:3rem;padding-top:1.2rem;border-top:2px solid var(--rule);color:var(--muted);font-size:.95rem}
+  footer ul{list-style:none;padding-left:0;display:flex;flex-wrap:wrap;gap:.4rem 1.4rem}
+  @media (prefers-reduced-motion:reduce){*{transition-duration:.001ms !important}}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<div class="wrap">
+  <header>
+    <p class="meta"><a href="/">Sottoapps</a> &rsaquo; Accessibility</p>
+    <h1>Accessibility &amp; text-only version</h1>
+    <p class="lead">This is a plain-text version of everything on sottoapps.com, written for easy reading with a screen reader or other assistive technology — without decorative images, animation, or heavy visual styling.</p>
+    <p>Where the main website uses photos or interactive demos, this page describes them in words. All the information about our studio and our two apps — <strong>Sotto</strong> and <strong>ListWise</strong> — is gathered here on one page.</p>
+  </header>
+
+  <nav class="toc" aria-label="On this page">
+    <h2 style="border-top:0;padding-top:0;margin-top:1.5rem">On this page</h2>
+    <ul>
+      <li><a href="#statement">Accessibility statement</a></li>
+      <li><a href="#studio">About Sottoapps</a></li>
+      <li><a href="#sotto">Sotto — private audio player</a></li>
+      <li><a href="#listwise">ListWise — smarter shopping lists</a></li>
+      <li><a href="#support">Support &amp; feedback</a></li>
+      <li><a href="#privacy">Privacy</a></li>
+      <li><a href="#images">Descriptions of the images on the site</a></li>
+    </ul>
+  </nav>
+
+  <main id="main">
+
+    <!-- ============ ACCESSIBILITY STATEMENT ============ -->
+    <section id="statement" aria-labelledby="statement-h">
+      <h2 id="statement-h">Accessibility statement</h2>
+      <p>Sottoapps is committed to making our website usable by everyone, including people with disabilities and sensory impairments. We treat accessibility as an ongoing effort, not a one-time task.</p>
+
+      <h3>Standard we aim for</h3>
+      <p>We aim to conform to the <strong>Web Content Accessibility Guidelines (WCAG) 2.1, Level AA</strong> — the internationally recognised standard referenced by accessibility laws including the Americans with Disabilities Act (ADA) and the European Accessibility Act.</p>
+
+      <h3>What we have done</h3>
+      <ul>
+        <li>Semantic page structure with headings and landmarks, so assistive technology can navigate and skip between sections.</li>
+        <li>Text alternatives describing every meaningful image (also gathered in the <a href="#images">image descriptions</a> below).</li>
+        <li>Text and interface colours that meet the AA contrast minimum (4.5:1 for normal text).</li>
+        <li>Full keyboard operability, with a visible focus indicator and a “skip to content” link.</li>
+        <li>Respect for your system preferences, including reduced-motion and text-zoom.</li>
+        <li>This text-only version of all site content, for the simplest possible reading experience.</li>
+      </ul>
+
+      <h3>Known limitations</h3>
+      <p>The “Download on the App Store” buttons on the main site are placeholders while our apps are in final preparation for release; they do not yet lead anywhere. If you come across any other barrier, please tell us — we want to fix it.</p>
+
+      <h3>Feedback &amp; contact</h3>
+      <p>If you have trouble using any part of our site, or you want this content in another format, email <a href="mailto:info@sottoapps.com">info@sottoapps.com</a> or use our <a href="/support">support page</a>. We aim to respond within a few business days.</p>
+
+      <p class="meta">Last reviewed: 13 July 2026.</p>
+    </section>
+
+    <!-- ============ STUDIO ============ -->
+    <section id="studio" aria-labelledby="studio-h">
+      <h2 id="studio-h">About Sottoapps</h2>
+      <p>Sottoapps is an independent app studio. We make small, careful apps for the things you do every day — built quiet, kept private.</p>
+      <p>We currently make two apps, both for iPhone and iPad:</p>
+      <ul>
+        <li><strong>Sotto</strong> — a private audio player for audiobooks, podcasts, and music.</li>
+        <li><strong>ListWise</strong> — a smarter shopping list that routes each item to the right store.</li>
+      </ul>
+    </section>
+
+    <!-- ============ SOTTO ============ -->
+    <section id="sotto" aria-labelledby="sotto-h">
+      <h2 id="sotto-h">Sotto — private audio player</h2>
+      <p class="lead">Listen privately.</p>
+      <p>Sotto is the audio player that keeps your library to yourself — audiobooks, music, and podcasts, with privacy built into every screen. It lets you hide what you’re playing (cover art, title, and author) on the lock screen, in Control Center, and over AirPlay and CarPlay, so you decide what the people around you can see.</p>
+
+      <h3>The story behind Sotto</h3>
+      <p>I was in the car, part-way through a fantasy-horror audiobook, when the cover art flashed onto the CarPlay screen — and it scared my child. Nothing dramatic. Just artwork meant for a grown-up’s imagination, showing up somewhere small eyes could see it.</p>
+      <p>That moment stuck with me. I started noticing how often what we’re listening to is on display without our say-so: the lock screen on a crowded train, Control Center when you hand your phone to a friend, the dashboard on the school run, AirPlay in a room full of family. A cover, a title, an author — quiet little signals telling everyone around you what’s in your head.</p>
+      <p>Sotto is the answer I wanted. Listen to whatever you love — the strange, the scary, the deeply personal — and decide for yourself what the world sees. No judgment, no explaining, no covers you didn’t choose.</p>
+      <p class="muted">— Made by one person who just wanted to listen in peace.</p>
+
+      <h3>What Sotto does</h3>
+      <p>Sotto is built for the long listen — hours-long books and shows have their own needs, and Sotto sweats those details:</p>
+      <dl>
+        <dt>Smart resume</dt>
+        <dd>Rewinds a few seconds on play so you never lose the thread.</dd>
+        <dt>Chapters</dt>
+        <dd>Jump by chapter, with seek scoped to where you are.</dd>
+        <dt>Variable speed</dt>
+        <dd>Separate defaults for books and music — or override per title.</dd>
+        <dt>Fading sleep timer</dt>
+        <dd>Eases the volume down instead of cutting off mid-sentence.</dd>
+        <dt>Full equalizer</dt>
+        <dd>Presets plus a per-title override — part of Sotto Premium, a one-time unlock.</dd>
+        <dt>On your device</dt>
+        <dd>No account, no ads, no trackers. Files and progress stay local.</dd>
+      </dl>
+
+      <h3>Sotto pricing</h3>
+      <p>Free to listen. Sotto Premium is a single one-time purchase — no subscription and no account. Sotto works with audiobooks, podcasts, and music, for iPhone and iPad.</p>
+
+      <h3>Sotto privacy, in brief</h3>
+      <p>Sotto collects no personal data: there is no account, no analytics, no advertising, and no tracking. Your library, listening history, bookmarks, and settings stay on your device. Optional iCloud sync uses your own iCloud account. Read the full <a href="/sottoplayer/privacy">Sotto privacy policy</a>.</p>
+    </section>
+
+    <!-- ============ LISTWISE ============ -->
+    <section id="listwise" aria-labelledby="listwise-h">
+      <h2 id="listwise-h">ListWise — smarter shopping lists</h2>
+      <p class="lead">Smarter lists, faster trips, less waste.</p>
+      <p>ListWise takes one shopping list and routes it to the right stores — and optimizes each trip for whatever matters that week: the fewest stops, the lowest total, or the best quality. It’s for iPhone and iPad.</p>
+
+      <h3>Multi-store optimizer</h3>
+      <p>ListWise reads every item, sorts it into 22 grocery categories, and assigns each item to the store type that does it best — produce to the market, meat to the butcher, bulk to the warehouse club. Then it plans the run three ways:</p>
+      <ul>
+        <li><strong>Time — fewest stops:</strong> consolidate the run to as few stores as possible so you’re in and out.</li>
+        <li><strong>Cost — lowest total:</strong> split across discount and warehouse stores where it pays off.</li>
+        <li><strong>Premium — best quality:</strong> send each item to the specialist that does it best.</li>
+      </ul>
+
+      <h3>Capture, hands-free</h3>
+      <p>Add items however suits the moment — nothing leaves your phone:</p>
+      <ul>
+        <li><strong>Voice capture:</strong> rattle off items by voice while you cook (for example, “two lemons, milk, olive oil”).</li>
+        <li><strong>Scan a receipt or list:</strong> snap a receipt or a scrawled paper list and Apple’s on-device AI reads it, parses the items, prices, and quantities, and files them into the right stores.</li>
+        <li><strong>Paste any text:</strong> drop in a block of items and ListWise sorts it out.</li>
+      </ul>
+
+      <h3>Shared in real time</h3>
+      <p>Share a list and it syncs instantly over iCloud — add coffee from the kitchen and watch it appear at the store; check off the milk and watch it cross out on the other person’s phone. Personal lists stay personal and never touch the network.</p>
+
+      <h3>Price intelligence &amp; budget</h3>
+      <p>ListWise learns what things usually cost and flags a genuine deal, keeps a running total against your budget, and remembers your spend trip to trip — so the number at the register is never a surprise. Per-unit price comparison (for example, price per pound or per ounce) sends each item to the store where it’s genuinely cheapest, not just the lowest sticker.</p>
+
+      <h3>Everyday details</h3>
+      <dl>
+        <dt>Recipe &amp; template library</dt>
+        <dd>Load a recipe or a saved template and it fills the list, pre-sorted. Over 70 templates are included.</dd>
+        <dt>Smart suggestions</dt>
+        <dd>Restock nudges for the staples you buy on a rhythm.</dd>
+        <dt>History</dt>
+        <dd>Every past trip is saved — reorder a whole run in a tap.</dd>
+        <dt>Quantities &amp; categories</dt>
+        <dd>Handles amounts like “times two”, “500 g”, or “a dozen”, sorted into 22 tuned grocery aisles.</dd>
+        <dt>Private by default</dt>
+        <dd>On-device AI; personal lists never leave your phone.</dd>
+        <dt>Store manager</dt>
+        <dd>Save your real stores; ListWise normalizes duplicates.</dd>
+      </dl>
+
+      <h3>ListWise pricing</h3>
+      <p>Free to start — build and sort lists at no cost. Premium is the upgrade, offered two ways:</p>
+      <ul>
+        <li><strong>Lifetime:</strong> a one-time purchase, yours forever.</li>
+        <li><strong>Monthly:</strong> includes a free trial, cancel anytime.</li>
+      </ul>
+      <p>Premium saves you time (every item sorts itself into the right aisle and store, and family sharing keeps one live list for the household) and money (per-unit price comparison finds the real best deal). New features and refinements roll out regularly, all included at no extra cost.</p>
+
+      <h3>ListWise privacy, in brief</h3>
+      <p>Your personal lists, saved lists, templates, shopping history, budget entries, and scanned receipts stay on your device. Optional household sharing stores shared lists in your own Apple iCloud (which we cannot read). Voice input and receipt/list scanning run on-device. An optional “Share anonymized prices” feature (off by default) contributes anonymous price points to a shared database. ListWise does not track you, show ads, use third-party analytics, or sell data. Read the full <a href="/listwise/privacypolicy.html">ListWise privacy policy</a>.</p>
+    </section>
+
+    <!-- ============ SUPPORT ============ -->
+    <section id="support" aria-labelledby="support-h">
+      <h2 id="support-h">Support &amp; feedback</h2>
+      <p>To report a problem or suggest a feature for either app, email <a href="mailto:info@sottoapps.com">info@sottoapps.com</a>, or use the <a href="/support">support form</a> on the main site (it opens a pre-filled message in your email app — nothing is sent until you press send).</p>
+      <p>For bug reports, it helps to include your device and iOS version and the steps to reproduce the problem. We only use your email address to reply to you.</p>
+    </section>
+
+    <!-- ============ PRIVACY ============ -->
+    <section id="privacy" aria-labelledby="privacy-h">
+      <h2 id="privacy-h">Privacy</h2>
+      <p>Both apps are built to keep your data on your device. Full policies:</p>
+      <ul>
+        <li><a href="/sottoplayer/privacy">Sotto privacy policy</a></li>
+        <li><a href="/listwise/privacypolicy.html">ListWise privacy policy</a></li>
+      </ul>
+      <p class="muted">The summaries above capture the key points; the linked policies are the authoritative, full versions.</p>
+    </section>
+
+    <!-- ============ IMAGE DESCRIPTIONS ============ -->
+    <section id="images" aria-labelledby="images-h">
+      <h2 id="images-h">Descriptions of the images on the site</h2>
+      <p>The main website uses photos and interactive demonstrations. Here is what each one shows.</p>
+
+      <h3>Homepage</h3>
+      <ul>
+        <li><strong>Sotto card:</strong> a dark, night-time panel with an animated audio equalizer — thin vertical bars in a warm ember colour rising and falling like a sound level meter.</li>
+        <li><strong>ListWise card:</strong> a bright, daytime panel showing a simple three-row checklist with round blue checkboxes, two of them ticked.</li>
+      </ul>
+
+      <h3>Sotto page</h3>
+      <ul>
+        <li><strong>Lock-screen demonstration (interactive):</strong> a phone showing a “now playing” card. In <em>Private</em> mode the cover art is blurred and the title and author are hidden behind a small lock (shield) icon. In <em>“What others would see”</em> mode the real cover art, the title “The Midnight Library”, and the author line “Matt Haig · Chapter 14” are visible. It demonstrates that you choose what appears on your lock screen.</li>
+        <li><strong>Hero photo:</strong> Sotto shown on two phones — the audiobook player on one, and the “Listen privately” privacy screen on the other.</li>
+        <li><strong>Showcase photo:</strong> three Sotto screens side by side — the Audiobooks Privacy settings, a now-playing screen with a custom cover, and the unified Library.</li>
+      </ul>
+
+      <h3>ListWise page</h3>
+      <ul>
+        <li><strong>Trip planner demonstration (interactive):</strong> the same eight-item list — ribeye steak, baby spinach, sourdough, whole milk, paper towels, sparkling water, rice (5 kg), and frozen berries — re-routed under three plans. <em>Time</em>: one stop, about 30 minutes, everything at a Supercenter. <em>Cost</em>: four stops, saving about $16, split across a Warehouse Club, a Discount Grocer, a Market, and a Supercenter. <em>Premium</em>: six stops sending items to specialists such as a Butcher, Market, and Grocery Store.</li>
+        <li><strong>Household preview:</strong> the “Ratley household” of three members (shown as the initials JR, SM, and AL) sharing one live list, with items assigned to different people.</li>
+        <li><strong>Budget preview:</strong> a trip running at $63.40 of an $80.00 budget, which is $11.20 lower than the last trip.</li>
+        <li><strong>Screenshot 1 — Trip snapshot:</strong> 35 items across 3 stores with an estimated total.</li>
+        <li><strong>Screenshot 2 — Grocery, by aisle:</strong> the grocery store tab, 29 items grouped by produce and category.</li>
+        <li><strong>Screenshot 3 — Warehouse run:</strong> the Warehouse Club tab showing hygiene, household paper, and cleaning items.</li>
+        <li><strong>Screenshot 4 — Library:</strong> the ListWise Library with Templates, Recipes, and Custom lists.</li>
+        <li><strong>Screenshot 5 — Templates:</strong> template folders including Holiday, Party, Weekly, Meal Prep, and Specialty (more than 70 templates in all).</li>
+        <li><strong>Screenshot 6 — Recipe library:</strong> recipe categories including beef, chicken, pasta, and vegetarian.</li>
+      </ul>
+    </section>
+
+  </main>
+
+  <footer>
+    <p>Sottoapps — small, careful apps.</p>
+    <ul>
+      <li><a href="/">Home</a></li>
+      <li><a href="/sottoplayer">Sotto</a></li>
+      <li><a href="/listwise">ListWise</a></li>
+      <li><a href="/support">Support</a></li>
+      <li><a href="mailto:info@sottoapps.com">info@sottoapps.com</a></li>
+    </ul>
+  </footer>
+</div>
+
+</body>
+</html>
